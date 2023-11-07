@@ -1,5 +1,4 @@
 # 基于 Java 的 (JWT) JSON Web Token 安全验证
-![Build Status](https://img.shields.io/github/checks-status/blueokanna/CustomJWT/master)
 [![License](http://img.shields.io/:license-apache-blue.svg?style=flat)](https://www.apache.org/licenses/)
 
 
@@ -8,7 +7,7 @@
 
 ### 设备环境要求
 
-Java JDK LTS 17 或更高版本支持此库。 对于 17 以上的非 LTS 版本的问题，将根据具体的运行环境情况予以考虑。
+本项目使用的是 **Java JDK LTS 17** ，请使用相同版本的 **JDK** 或更高版本支持此库。 对于 **17** 以上的非 **LTS** 版本的问题，将根据具体的运行环境情况予以考虑。
 
 `CustomJWT` 目前支持以下签名和验证算法：
 
@@ -32,9 +31,18 @@ Java JDK LTS 17 或更高版本支持此库。 对于 17 以上的非 LTS 版本
 > 
 > :warning:  **重要安全说明:** JVM 存在 ECDSA 算法的严重漏洞- [CVE-2022-21449](https://nvd.nist.gov/vuln/detail/CVE-2022-21449).请尽快检查你的设备是否更新！
 
-### 调用库
+### 调用 Java 库
 
-### 调用 JWT 库
+**Java Maven** 调用本次项目的库：
+```java
+<dependency>
+  <groupId>top.pulselink.java</groupId>
+  <artifactId>customjwt</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+### 使用 Java-CustomJWT 库
 使用 `CustomJWT jwt = new CustomJWT()` 初始化这个库，配置声明等。
 
 下面的示例使用各种支持的签名算法：
@@ -134,13 +142,13 @@ try{
 
  String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
 
-                System.out.println("Private Key (PEM):");
-                System.out.println(jwt.getPrivateKeyPEM());      //输出 RSAPSSSHA256withMGF1 的私钥签名
-                System.out.println();
+System.out.println("Private Key (PEM):");
+System.out.println(jwt.getPrivateKeyPEM());      //输出 RSAPSSSHA256withMGF1 的私钥签名
+System.out.println();
 
-                System.out.println("Public Key (PEM):");
-                System.out.println(jwt.getPublicKeyPEM());      //输出 RSAPSSSHA256withMGF1 的公钥签名
-                System.out.println();
+System.out.println("Public Key (PEM):");
+System.out.println(jwt.getPublicKeyPEM());      //输出 RSAPSSSHA256withMGF1 的公钥签名
+System.out.println();
 
 
  System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
@@ -195,13 +203,13 @@ try{
 
  String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
 
-                System.out.println("Private Key (PEM):");
-                System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withRSA 的私钥签名
-                System.out.println();
+System.out.println("Private Key (PEM):");
+System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withRSA 的私钥签名
+System.out.println();
 
-                System.out.println("Public Key (PEM):");
-                System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withRSA 的公钥签名
-                System.out.println();
+System.out.println("Public Key (PEM):");
+System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withRSA 的公钥签名
+System.out.println();
 
 
  System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
@@ -254,15 +262,15 @@ try{
 准备Sign
 */
 
- String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
+String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
 
-                System.out.println("Private Key (PEM):");
-                System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withECDSA 的私钥签名
-                System.out.println();
+System.out.println("Private Key (PEM):");
+System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withECDSA 的私钥签名
+System.out.println();
 
-                System.out.println("Public Key (PEM):");
-                System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withECDSA 的公钥签名
-                System.out.println();
+System.out.println("Public Key (PEM):");
+System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withECDSA 的公钥签名
+System.out.println();
 
 
  System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
@@ -283,9 +291,11 @@ try{
 ### 贡献与赞助支持
 首先先感谢对此项目 CustomJWT 的支持与贡献！
 > 赞助 Doge 地址： D7QJGmzurVpuG5uaxqSccMv3c1VX76HwZP
-> 
+>
+> 赞助 Firo 地址：aFGoWQhsTXutfCotGjxp5VTgc8Wjn5X53z
+>
 > 赞助 XMR 地址：41yBawyNRSfe7X6G4RKjKQZXZMDfe1JCnBynsXSNEjPq8dsXYevLv4pBGbmqY6yRSsYLd1g4xyuLYiwxEAC8YSyD4fxZSNJ
-
+>
 ----
 
 
