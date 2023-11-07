@@ -1,6 +1,9 @@
 # 基于 Java 的 (JWT) JSON Web Token 安全验证
-[![License](http://img.shields.io/:license-apache-blue.svg?style=flat)](https://www.apache.org/licenses/)
-
+[![Apache Java](https://img.shields.io/badge/logo-apache-yellow?logo=apache-maven)](https://www.apache.org/foundation/marks/)
+[![License](http://img.shields.io/:license-apache-green.svg?style=flat)](https://www.apache.org/licenses/)
+![Maven Central](https://img.shields.io/maven-central/v/top.pulselink.java/customjwt)
+![image](https://github.com/blueokanna/CustomJWT/assets/56761243/5c553ae7-8dc5-46d8-8032-fabd989dc51b)
+[![Hits](https://hits.sh/github.com/blueokanna/CustomJWT.git.svg?color=fe7d37)](https://hits.sh/github.com/blueokanna/CustomJWT.git/)
 
 ## 使用文档
 >  JWT（JSON Web Token）是一种基于 JSON 的开放标准，用于在网络应用程序之间安全传输信息。它包含头部、载荷和签名三个部分，采用数字签名或消息认证码验证信息完整性和真实性。相较于传统的 Cookie 和 Session 认证方式，JWT 具有更节约资源、对移动端和分布式系统友好等优点。
@@ -300,12 +303,13 @@ System.out.println();
 
 ### 贡献与赞助支持
 首先先感谢对此项目 CustomJWT 的支持与贡献！
-> 赞助 Doge 地址： D7QJGmzurVpuG5uaxqSccMv3c1VX76HwZP
->
-> 赞助 Firo 地址：aFGoWQhsTXutfCotGjxp5VTgc8Wjn5X53z
->
-> 赞助 XMR 地址：41yBawyNRSfe7X6G4RKjKQZXZMDfe1JCnBynsXSNEjPq8dsXYevLv4pBGbmqY6yRSsYLd1g4xyuLYiwxEAC8YSyD4fxZSNJ
->
+
+| CryptoCoin | Address |
+| :-------------: | :----- |
+| ![Dogecoin](https://img.shields.io/badge/dogecoin-B59A30?style=for-the-badge&logo=dogecoin&logoColor=white) | D7QJGmzurVpuG5uaxqSccMv3c1VX76HwZP |
+| ![Litecoin](https://img.shields.io/badge/Litecoin-A6A9AA?style=for-the-badge&logo=Litecoin&logoColor=white) | ltc1qew525h6aw274kyqteguue89megls6rt9s39hpz |
+| ![Monero](https://img.shields.io/badge/monero-FF6600?style=for-the-badge&logo=monero&logoColor=white) | 41yBawyNRSfe7X6G4RKjKQZXZMDfe1JCnBynsXSNEjPq8dsXYevLv4pBGbmqY6yRSsYLd1g4xyuLYiwxEAC8YSyD4fxZSNJ |
+
 ----
 
 
