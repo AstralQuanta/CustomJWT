@@ -42,8 +42,18 @@
 </dependency>
 ```
 
+**Java Gradle** 调用本次项目的库：
+```java
+implementation group: 'top.pulselink.java', name: 'customjwt', version: '1.0.0'
+```
+
+**Java ivy** 调用本次项目的库：
+```java
+<dependency org="top.pulselink.java" name="customjwt" rev="1.0.0"/>
+```
+
 ### 使用 Java-CustomJWT 库
-使用 `CustomJWT jwt = new CustomJWT()` 初始化这个库，配置声明等。
+使用 **`CustomJWT jwt = new CustomJWT()`** 初始化这个库，配置声明等。
 
 下面的示例使用各种支持的签名算法：
 
