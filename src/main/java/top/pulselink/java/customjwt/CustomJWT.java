@@ -1,4 +1,4 @@
-package top.pulselink.customjwt;
+package top.pulselink.java.customjwt;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -360,7 +360,8 @@ public final class CustomJWT {
             case "SHA512withECDSA" -> {
                 return 132;
             }
-            default -> throw new IllegalArgumentException("Unsupported ECDSA algorithm");
+            default ->
+                throw new IllegalArgumentException("Unsupported ECDSA algorithm");
         }
     }
 
