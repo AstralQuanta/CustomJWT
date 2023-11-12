@@ -306,9 +306,8 @@ System.out.println();
 
 | CryptoCoin | Address |
 | :-------------: | :----- |
-| ![Dogecoin](https://img.shields.io/badge/dogecoin-B59A30?style=for-the-badge&logo=dogecoin&logoColor=white) | D7QJGmzurVpuG5uaxqSccMv3c1VX76HwZP |
-| ![Litecoin](https://img.shields.io/badge/Litecoin-A6A9AA?style=for-the-badge&logo=Litecoin&logoColor=white) | ltc1qew525h6aw274kyqteguue89megls6rt9s39hpz |
-| ![Monero](https://img.shields.io/badge/monero-FF6600?style=for-the-badge&logo=monero&logoColor=white) | 41yBawyNRSfe7X6G4RKjKQZXZMDfe1JCnBynsXSNEjPq8dsXYevLv4pBGbmqY6yRSsYLd1g4xyuLYiwxEAC8YSyD4fxZSNJ |
+| ![Dogecoin](https://img.shields.io/badge/dogecoin-B59A30?style=for-the-badge&logo=dogecoin&logoColor=white) | DP6ihFjB4k19unw8Kc9w2Wa9JZVeT8za5y |
+| ![Litecoin](https://img.shields.io/badge/Litecoin-A6A9AA?style=for-the-badge&logo=Litecoin&logoColor=white) | ltc1q6rmlluf0x3qszz6jj9mxq5jh526cla5u28c3dg |
 
 ----
 
