@@ -1,4 +1,4 @@
-# Custom Java-based (JWT) JSON Web Token security verification
+# Custom Java-based (JWT) JSON Web Token security verification - [中文文档](https://github.com/AstralQuanta/CustomJWT/blob/main/README_zh.md)
 [![Apache Java](https://img.shields.io/badge/logo-apache-yellow?logo=apache-maven)](https://www.apache.org/foundation/marks/)
 [![License](http://img.shields.io/:license-apache-green.svg?style=flat)](https://www.apache.org/licenses/)
 ![Maven Central](https://img.shields.io/maven-central/v/top.pulselink.java/customjwt)
