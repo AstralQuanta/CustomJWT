@@ -1,18 +1,18 @@
-# 基于 Java 的 (JWT) JSON Web Token 安全验证
+# Custom Java-based (JWT) JSON Web Token security verification
 [![Apache Java](https://img.shields.io/badge/logo-apache-yellow?logo=apache-maven)](https://www.apache.org/foundation/marks/)
 [![License](http://img.shields.io/:license-apache-green.svg?style=flat)](https://www.apache.org/licenses/)
 ![Maven Central](https://img.shields.io/maven-central/v/top.pulselink.java/customjwt)
 ![image](https://github.com/blueokanna/CustomJWT/assets/56761243/5c553ae7-8dc5-46d8-8032-fabd989dc51b)
 [![Hits](https://hits.sh/github.com/blueokanna/CustomJWT.git.svg?color=fe7d37)](https://hits.sh/github.com/blueokanna/CustomJWT.git/)
 
-## 使用文档
->  JWT（JSON Web Token）是一种基于 JSON 的开放标准，用于在网络应用程序之间安全传输信息。它包含头部、载荷和签名三个部分，采用数字签名或消息认证码验证信息完整性和真实性。相较于传统的 Cookie 和 Session 认证方式，JWT 具有更节约资源、对移动端和分布式系统友好等优点。
+## Documentation
+>  JWT (JSON Web Token) is an open standard based on JSON for securely transmitting information between web applications. It contains three parts: header, payload and signature, and uses digital signature or message authentication code to verify the integrity and authenticity of the information. Compared with traditional Cookie and Session authentication methods, JWT has the advantages of being more resource-saving and friendly to mobile terminals and distributed systems.
 
-### 设备环境要求
+### Environmental requirements for equipment
 
-本项目使用的是 **Java JDK LTS 17** ，请使用相同版本的 **JDK** 或更高版本支持此库。 对于 **17** 以上的非 **LTS** 版本的问题，将根据具体的运行环境情况予以考虑。
+This project uses **Java JDK LTS 17**, please use the same version of **JDK** or higher to support this library. Issues with non-**LTS** versions above **17** will be considered on a case-by-case basis.
 
-`CustomJWT` 目前支持以下签名和验证算法：
+`CustomJWT` currently supports the following signature and verification algorithms：
 
 | JWS | Algorithm | Description |
 | :-------------: | :-------------: | :----- |
@@ -30,13 +30,13 @@
 | ES512 | ECDSA512 | ECDSA with curve P-521 and SHA-512 |
 
 
-> 注意❗ 对具有曲线 secp256k1 和 SHA-256 (ES256K) 的 ECDSA 的支持在 JDK15 就已经被删除了，如果需要修改相关的代码，那么就要注意了！
+> Causion❗ Support for ECDSA with curves secp256k1 and SHA-256 (ES256K) was removed in JDK15, so be careful if you need to modify the relevant code!！
 > 
-> :warning:  **重要安全说明:** JVM 存在 ECDSA 算法的严重漏洞- [CVE-2022-21449](https://nvd.nist.gov/vuln/detail/CVE-2022-21449).请尽快检查你的设备是否更新！
+> :warning:  **Important Security Note:** A critical vulnerability exists in the JVM for the ECDSA algorithm - [CVE-2022-21449](https://nvd.nist.gov/vuln/detail/CVE-2022-21449). Please check your device for updates as soon as possible!
 
-### 调用 Java 库
+### Java Libraries
 
-**Java Maven** 调用本次项目的库：
+**Java Maven** for this project：
 ```java
 <dependency>
   <groupId>top.pulselink.java</groupId>
@@ -45,38 +45,38 @@
 </dependency>
 ```
 
-**Java Gradle** 调用本次项目的库：
+**Java Gradle** for this project：
 ```java
 implementation group: 'top.pulselink.java', name: 'customjwt', version: '1.0.0'
 ```
 
-**Java ivy** 调用本次项目的库：
+**Java ivy** for this project：
 ```java
 <dependency org="top.pulselink.java" name="customjwt" rev="1.0.0"/>
 ```
 
-### 使用 Java-CustomJWT 库
-使用 **`CustomJWT jwt = new CustomJWT()`** 初始化这个库，配置声明等。
+### Use Java-CustomJWT Library
+**`CustomJWT jwt = new CustomJWT()`** Initialise this library, configure declarations etc.
 
-下面的示例使用各种支持的签名算法：
+**The following examples use various supported signature algorithms:**
 
-**1. HS256 签名算法:**
+**1. HS256 signature algorithm:**
 ```java
 public static void main(String [] args){
 
 try{
- CustomJWT jwt = new CustomJWT();  //初始化
+ CustomJWT jwt = new CustomJWT();  //initialisation
 
 /*
-准备Header
+Prepare Header
 */
 
- String alg = "HS256";              //添加 Header
- String type = "JWT";               //添加Header
- String header = jwt.Header(alg, type);      //给 header 添加进这两个元素
+ String alg = "HS256";              //Add Header
+ String type = "JWT";               //Add Header
+ String header = jwt.Header(alg, type);      //Add these two elements to the header
 
 /*
-准备Payload
+Prepare Payload
 */
 
   String[] payloadMessage = {
@@ -84,27 +84,30 @@ try{
                     "name", "John Doe",                 //2
                     "admin", "true",                    //3
                     "iat", Long.toString(1516239022L)    //4
-                };                                      //准备好将 payload 的消息
+                };                                      //Prepare the message for the payload
 
 /*
-以下的isNumArray 这里的 `true` 是将 payload 里面的 `boolean` 类型和长整型生成对应的类型，
-比如在 payload 里面的 `1` 这一行的注释输出的希望得到的是字符串类型，则直接输出 `false`，如果要输出为整数类型，则修改为 `true` 就行
-比如这里的 `"admin", "true"`这里是将字符串来的 `true` 转变成 `boolean` 的类型.
-显示将不带引号，同样的长整数类型同样也是这个道理，输出不为字符串类型
+The `true` in the following isNumArray is to generate the corresponding type for the `boolean` type and the long integer type inside the payload, for example, if the comment on the line `1` inside the payload wants to get the string type, it will output `false` directly.
+
+For example, if you want to get a string type in the comment output of the line `1` inside the payload, you can output `false` directly, if you want to output an integer type, you can change it to `true`.
+
+For example, `"admin", "true"` here is to convert the string `true` to a `boolean` type.
+
+The display will be without quotes, and the same applies to long integer types, the output will not be of string type.
 */
 
  boolean[] isNumArray = {false, false, true, true};
- String payload = jwt.Payload(isNumArray, payloadMessage); //将消息添加到 Payload 部分
+ String payload = jwt.Payload(isNumArray, payloadMessage); //Add the message to the Payload section
 
 /*
-准备Sign
+Prepare Sign
 */
 
- String key = "your-256-bit-secret";  //给下面的签名部分添加 secret
- String sign = jwt.Signature(alg, header + "." + payload, key); //准备给 header 和 payload 生成签名
+ String key = "your-256-bit-secret";  //add secret to the signature section below
+ String sign = jwt.Signature(alg, header + "." + payload, key); //Prepare to generate signatures for the header and payload.
 
- System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
- System.out.println(jwt.verifyHS(header + "." + payload + "." + sign, alg, key));   //输出 HS256 JWT 的验证，如果验证正确则输出true,否则输出false
+ System.out.println(header + "." + payload + "." + sign);  // JWT generation, output Token
+ System.out.println(jwt.verifyHS(header + "." + payload + "." + sign, alg, key));   //Output the validation of HS256 JWT, if the validation is correct then output true, otherwise output false.
 
   }catch(Exception ex){
     ex.printStackTrace();
@@ -112,24 +115,24 @@ try{
 }
 ```
 
-**2. PS256 签名算法:**
+**2. PS256 signature algorithm:**
 
 ```java
 public static void main(String [] args){
 
 try{
- CustomJWT jwt = new CustomJWT(2048);  // RSA2048 初始化
+ CustomJWT jwt = new CustomJWT(2048);  // RSA2048 Initialisation
 
 /*
-准备Header
+Prepare Header
 */
 
- String alg = "PS256";              //添加 Header
- String type = "JWT";               //添加Header
- String header = jwt.Header(alg, type);      //给 header 添加进这两个元素
+ String alg = "PS256";              //Add Header
+ String type = "JWT";               //Add Header
+ String header = jwt.Header(alg, type);      //Add these two elements to the header
 
 /*
-准备Payload
+Prepare Payload
 */
 
   String[] payloadMessage = {
@@ -137,35 +140,38 @@ try{
                     "name", "John Doe",                 //2
                     "admin", "true",                    //3
                     "iat", Long.toString(1516239022L)    //4
-                };                                      //准备好将 payload 的消息
+                };                                      //Prepare the message for the payload
 
 /*
-以下的isNumArray 这里的 `true` 是将 payload 里面的 `boolean` 类型和长整型生成对应的类型，
-比如在 payload 里面的 `1` 这一行的注释输出的希望得到的是字符串类型，则直接输出 `false`，如果要输出为整数类型，则修改为 `true` 就行
-比如这里的 `"admin", "true"`这里是将字符串来的 `true` 转变成 `boolean` 的类型.
-显示将不带引号，同样的长整数类型同样也是这个道理，输出不为字符串类型
+The `true` in the following isNumArray is to generate the corresponding type for the `boolean` type and the long integer type inside the payload, for example, if the comment on the line `1` inside the payload wants to get the string type, it will output `false` directly.
+
+For example, if you want to get a string type in the comment output of the line `1` inside the payload, you can output `false` directly, if you want to output an integer type, you can change it to `true`.
+
+For example, `"admin", "true"` here is to convert the string `true` to a `boolean` type.
+
+The display will be without quotes, and the same applies to long integer types, the output will not be of string type.
 */
 
  boolean[] isNumArray = {false, false, true, true};
- String payload = jwt.Payload(isNumArray, payloadMessage); //将消息添加到 Payload 部分
+ String payload = jwt.Payload(isNumArray, payloadMessage); //Add the message to the Payload section
 
 /*
-准备Sign
+Prepare Sign
 */
 
- String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
+ String sign = jwt.Signature(alg, header + "." + payload); //Prepare to generate signatures for the header and payload
 
 System.out.println("Private Key (PEM):");
-System.out.println(jwt.getPrivateKeyPEM());      //输出 RSAPSSSHA256withMGF1 的私钥签名
+System.out.println(jwt.getPrivateKeyPEM());      //Output RSAPSSSHA256withMGF1 Private Key Signature
 System.out.println();
 
 System.out.println("Public Key (PEM):");
-System.out.println(jwt.getPublicKeyPEM());      //输出 RSAPSSSHA256withMGF1 的公钥签名
+System.out.println(jwt.getPublicKeyPEM());      //Output RSAPSSSHA256withMGF1 Public Key Signature
 System.out.println();
 
 
- System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
- System.out.println(jwt.verifyPS256(header + "." + payload + "." + sign, sign));   //输出 PS256 JWT 的验证，如果验证正确则输出true,否则输出false
+ System.out.println(header + "." + payload + "." + sign);  // JWT generation, output Token
+ System.out.println(jwt.verifyPS256(header + "." + payload + "." + sign, sign));   //Output the validation of PS256 JWT, if the validation is correct then output true, otherwise output false.
 
   }catch(Exception ex){
     ex.printStackTrace();
@@ -173,24 +179,24 @@ System.out.println();
 }
 ```
 
-**3. RS256 签名算法:(与 PS256 差不多)**
+**3. RS256 signature algorithm: **
 
 ```java
 public static void main(String [] args){
 
 try{
- CustomJWT jwt = new CustomJWT(2048);  // RSA2048 初始化
+ CustomJWT jwt = new CustomJWT(2048);  // RSA2048 Initialisation
 
 /*
-准备Header
+Prepare Header
 */
 
- String alg = "RS256";              //添加 Header
- String type = "JWT";               //添加Header
- String header = jwt.Header(alg, type);      //给 header 添加进这两个元素
+ String alg = "RS256";              //Add Header
+ String type = "JWT";               //Add Header
+ String header = jwt.Header(alg, type);      //Add these two elements to the header
 
 /*
-准备Payload
+Prepare Payload
 */
 
   String[] payloadMessage = {
@@ -198,35 +204,38 @@ try{
                     "name", "John Doe",                 //2
                     "admin", "true",                    //3
                     "iat", Long.toString(1516239022L)    //4
-                };                                      //准备好将 payload 的消息
+                };                                      //Prepare the message for the payload
 
 /*
-以下的isNumArray 这里的 `true` 是将 payload 里面的 `boolean` 类型和长整型生成对应的类型，
-比如在 payload 里面的 `1` 这一行的注释输出的希望得到的是字符串类型，则直接输出 `false`，如果要输出为整数类型，则修改为 `true` 就行
-比如这里的 `"admin", "true"`这里是将字符串来的 `true` 转变成 `boolean` 的类型.
-显示将不带引号，同样的长整数类型同样也是这个道理，输出不为字符串类型
+The `true` in the following isNumArray is to generate the corresponding type for the `boolean` type and the long integer type inside the payload, for example, if the comment on the line `1` inside the payload wants to get the string type, it will output `false` directly.
+
+For example, if you want to get a string type in the comment output of the line `1` inside the payload, you can output `false` directly, if you want to output an integer type, you can change it to `true`.
+
+For example, `"admin", "true"` here is to convert the string `true` to a `boolean` type.
+
+The display will be without quotes, and the same applies to long integer types, the output will not be of string type.
 */
 
  boolean[] isNumArray = {false, false, true, true};
- String payload = jwt.Payload(isNumArray, payloadMessage); //将消息添加到 Payload 部分
+ String payload = jwt.Payload(isNumArray, payloadMessage); //Add the message to the Payload section
 
 /*
 准备Sign
 */
 
- String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
+ String sign = jwt.Signature(alg, header + "." + payload); //Prepare to generate signatures for the header and payload
 
 System.out.println("Private Key (PEM):");
-System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withRSA 的私钥签名
+System.out.println(jwt.getPrivateKeyPEM());      //Output SHA256withRSA private key signature
 System.out.println();
 
 System.out.println("Public Key (PEM):");
-System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withRSA 的公钥签名
+System.out.println(jwt.getPublicKeyPEM());      //Output SHA256withRSA public key signature
 System.out.println();
 
 
- System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
- System.out.println(jwt.verifyRS256(header + "." + payload + "." + sign, sign));   //输出 RS256 JWT 的验证，如果验证正确则输出true,否则输出false
+ System.out.println(header + "." + payload + "." + sign);  // JWT generation, output Token
+ System.out.println(jwt.verifyRS256(header + "." + payload + "." + sign, sign));   //Output the validation of RS256 JWT, if the validation is correct then output true, otherwise output false.
 
   }catch(Exception ex){
     ex.printStackTrace();
@@ -234,24 +243,24 @@ System.out.println();
 }
 ```
 
-**3. ES256 签名算法:(ECDSA 椭圆算法)**
+**3. ES256 Signature Algorithm: (ECDSA Elliptic Algorithm)**
 
 ```java
 public static void main(String [] args){
 
 try{
- CustomJWT jwt = new CustomJWT(256);  // ECDSA 初始化，这里提供的有256，384，521
+ CustomJWT jwt = new CustomJWT(256);  // ECDSA initialisation, provided here with 256, 384, 521
 
 /*
-准备Header
+Prepare Header
 */
 
- String alg = "ES256";              //添加 Header
- String type = "JWT";               //添加Header
- String header = jwt.Header(alg, type);      //给 header 添加进这两个元素
+ String alg = "ES256";              //Add Header
+ String type = "JWT";               //Add Header
+ String header = jwt.Header(alg, type);      //Add these two elements to the header
 
 /*
-准备Payload
+Prepare Payload
 */
 
   String[] payloadMessage = {
@@ -259,55 +268,78 @@ try{
                     "name", "John Doe",                 //2
                     "admin", "true",                    //3
                     "iat", Long.toString(1516239022L)    //4
-                };                                      //准备好将 payload 的消息
+                };                                      //Prepare the message for the payload
 
 /*
-以下的isNumArray 这里的 `true` 是将 payload 里面的 `boolean` 类型和长整型生成对应的类型，
-比如在 payload 里面的 `1` 这一行的注释输出的希望得到的是字符串类型，则直接输出 `false`，如果要输出为整数类型，则修改为 `true` 就行
-比如这里的 `"admin", "true"`这里是将字符串来的 `true` 转变成 `boolean` 的类型.
-显示将不带引号，同样的长整数类型同样也是这个道理，输出不为字符串类型
+The `true` in the following isNumArray is to generate the corresponding type for the `boolean` type and the long integer type inside the payload, for example, if the comment on the line `1` inside the payload wants to get the string type, it will output `false` directly.
+
+For example, if you want to get a string type in the comment output of the line `1` inside the payload, you can output `false` directly, if you want to output an integer type, you can change it to `true`.
+
+For example, `"admin", "true"` here is to convert the string `true` to a `boolean` type.
+
+The display will be without quotes, and the same applies to long integer types, the output will not be of string type.
 */
 
  boolean[] isNumArray = {false, false, true, true};
- String payload = jwt.Payload(isNumArray, payloadMessage); //将消息添加到 Payload 部分
+ String payload = jwt.Payload(isNumArray, payloadMessage); //Add the message to the Payload section
 
 /*
-准备Sign
+Prepare Sign
 */
 
-String sign = jwt.Signature(alg, header + "." + payload); //准备给 header 和 payload 生成签名
+String sign = jwt.Signature(alg, header + "." + payload); //Prepare to generate signatures for the header and payload
 
 System.out.println("Private Key (PEM):");
-System.out.println(jwt.getPrivateKeyPEM());      //输出 SHA256withECDSA 的私钥签名
+System.out.println(jwt.getPrivateKeyPEM());      //Output SHA256withECDSA private key signature
 System.out.println();
 
 System.out.println("Public Key (PEM):");
-System.out.println(jwt.getPublicKeyPEM());      //输出 SHA256withECDSA 的公钥签名
+System.out.println(jwt.getPublicKeyPEM());      //Output SHA256withECDSA Public Key Signature
 System.out.println();
 
 
- System.out.println(header + "." + payload + "." + sign);  // JWT 生成，输出 Token
- System.out.println(jwt.verifyES256(header + "." + payload + "." + sign, sign));   //输出 RS256 JWT 的验证，如果验证正确则输出true,否则输出false
+ System.out.println(header + "." + payload + "." + sign);  // JWT generation, output Token
+ System.out.println(jwt.verifyES256(header + "." + payload + "." + sign, sign));   //Output the validation of RS256 JWT, if the validation is correct then output true, otherwise output false.
 
   }catch(Exception ex){
     ex.printStackTrace();
   }
 }
 ```
+## Q & A
 
-## 问题反馈与贡献赞助支持
+**Q: Compare the difference between RS256 and PS256:**
 
-### 问题反馈准则
+> A: Both PS256 and RS256 use the RSA algorithm, but PS256 uses a more secure and sophisticated RSA-PSS signature scheme, which provides more security and protection compared to the traditional RS256 signature. In practice, PS256 is often considered the more secure choice, especially in environments with high security requirements.
 
-> 您可以在 Github Issue 处报告项目的安全漏洞。这边也会努力确保及时处理问题，但根据不同时区的时间影响，可能需要一段时间才能即使回复或者更新代码。
+**Q: Is HS256 more secure than RS256 or PS256?**
 
-### 贡献与赞助支持
-首先先感谢对此项目 CustomJWT 的支持与贡献！
+> A: The security of HS256 depends on key protection and management. The HMAC algorithm provides good security if the key is not compromised and is strong enough.
+>
+> RS256 and PS256 use asymmetric key pairs, so they do not need to share the key between the two communicating parties as opposed to HMAC. This makes key management easier, but requires more computational resources to generate and verify signatures. Also, PS256 provides stronger security compared to RS256, especially better protection against some types of attacks.
+Overall, the security comparison depends on the actual usage scenario and the way the key is managed. If the keys can be managed securely and are strong enough, the HMAC algorithm provides security comparable to asymmetric encryption algorithms.
+>
+> In many cases, asymmetric encryption algorithms such as RS256 or PS256 are considered to provide better security, especially when key management is complex or more advanced security is required.
 
-| CryptoCoin | Address |
-| :-------------: | :----- |
-| ![Dogecoin](https://img.shields.io/badge/dogecoin-B59A30?style=for-the-badge&logo=dogecoin&logoColor=white) | DP6ihFjB4k19unw8Kc9w2Wa9JZVeT8za5y |
-| ![Litecoin](https://img.shields.io/badge/Litecoin-A6A9AA?style=for-the-badge&logo=Litecoin&logoColor=white) | ltc1q6rmlluf0x3qszz6jj9mxq5jh526cla5u28c3dg |
+**Q: In what situations is the ES256 algorithm most useful?**
+
+> A: Mobile and resource-constrained devices: Elliptic curve encryption algorithms have smaller key sizes than traditional RSA algorithms, making them more useful in resource-constrained environments (e.g., mobile devices, sensors, IoT devices, etc.). It requires fewer computational resources and storage space while providing comparable security, which makes ES256 an ideal choice on these devices.
+>
+> Network bandwidth-constrained environments: ES256-generated signatures are shorter compared to signatures generated by the RSA algorithm, which means they take up less bandwidth in network transmissions. In network bandwidth-constrained environments, using ES256 reduces transmission overhead.
+>
+> Scenarios requiring both security and efficiency: ES256 provides comparable security to RSA, while taking advantage of resource consumption and efficiency. Therefore, ES256 is a good choice for scenarios where security needs to be ensured while resource consumption and performance need to be considered.
+>
+> Application scenarios requiring strong security: Elliptic curve encryption algorithms are often considered stronger than RSA algorithms because they provide the same or higher level of security while using shorter key lengths. Therefore, ES256 is an attractive choice for application scenarios that require a high level of security.
+>
+> ES256 This algorithm provides good security in resource-constrained environments or environments where both security and efficiency are required, and has some advantages in terms of resource consumption.
+
+
+## Issue Feedback and Contribution Sponsorship Support
+
+### Guidelines for feedback on issues
+
+You can report security vulnerabilities in your project at Github Issues. We'll try to make sure the issue is handled in a timely manner, but depending on the time impact of different time zones, it may take a while before we can even respond or update the code.
+
 
 ----
 
