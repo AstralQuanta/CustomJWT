@@ -1,4 +1,4 @@
-# 基于 Java 的 (JWT) JSON Web Token 安全验证
+# 基于 Java 的 (JWT) JSON Web Token 安全验证 - [English Doc](https://github.com/AstralQuanta/CustomJWT/blob/main/README.md)
 [![Apache Java](https://img.shields.io/badge/logo-apache-yellow?logo=apache-maven)](https://www.apache.org/foundation/marks/)
 [![License](http://img.shields.io/:license-apache-green.svg?style=flat)](https://www.apache.org/licenses/)
 ![Maven Central](https://img.shields.io/maven-central/v/top.pulselink.java/customjwt)
